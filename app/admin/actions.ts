@@ -12,7 +12,7 @@ async function requireAdmin() {
   if (!verifySession(store.get(COOKIE)?.value)) redirect("/admin/login");
 }
 
-export async function login(_prev: { error?: string }, formData: FormData) {
+export async function login(_prev: { error?: string }, formData: FormData): Promise<{ error?: string }> {
   const email = String(formData.get("email") || "").trim().toLowerCase();
   const password = String(formData.get("password") || "");
   const okEmail = email === (process.env.ADMIN_EMAIL || "").toLowerCase();
