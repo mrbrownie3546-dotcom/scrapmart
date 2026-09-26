@@ -1,5 +1,11 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 model Category {
   id        String    @id @default(cuid())
@@ -25,19 +31,20 @@ model Product {
 }
 
 model SiteSettings {
-  id             String @id @default("main")
+  id             String   @id @default("main")
   whatsappNumber String
-  siteName       String @default("ScrapMart")
+  siteName       String   @default("ScrapMart")
   updatedAt      DateTime @updatedAt
 }
+
 model Order {
   id        String   @id @default(cuid())
-  type      String   // "BUY" | "SELL"
+  type      String
   name      String
   phone     String
   item      String
   quantity  String?
   message   String?
-  status    String   @default("NEW") // NEW | CONTACTED | DONE
+  status    String   @default("NEW")
   createdAt DateTime @default(now())
 }
